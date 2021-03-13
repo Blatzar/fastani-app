@@ -131,7 +131,7 @@ class FastAniApi {
         @JsonProperty("status") val status: String,
         @JsonProperty("data") val data: ShiroHomePageData,
         @JsonProperty("random") var random: AnimePage?,
-        @JsonProperty("favorites") var favorites: List<AnimePageData?>?,
+        @JsonProperty("favorites") var favorites: List<BookmarkedTitle?>?,
         @JsonProperty("recentlySeen") var recentlySeen: List<LastEpisodeInfo?>?
     )
 
@@ -316,6 +316,20 @@ class FastAniApi {
             }
         }
 
+        /*Overloaded function to get animepage for the bookmarked title*/
+        fun getAnimePage(show: BookmarkedTitle): AnimePage? {
+            val url = "https://ani.api-web.site/anime/slug/${show.slug}?token=${currentToken?.token}"
+            return try {
+                val response = khttp.get(url)
+                val mapped = response.let { mapper.readValue<AnimePage>(it.text) }
+                if (mapped.status == "Found")
+                    mapped
+                else null
+            } catch (e: Exception) {
+                null
+            }
+        }
+
         // TODO MAKE THIS ONCE FUNCTION
         fun getAnimePage(slug: String): AnimePage? {
             val url = "https://ani.api-web.site/anime/slug/${slug}?token=${currentToken?.token}"
@@ -399,16 +413,16 @@ class FastAniApi {
 
         var cachedHome: ShiroHomePage? = null
 
-        private fun getFav(): List<AnimePageData?> {
+        private fun getFav(): List<BookmarkedTitle?> {
             val keys = DataStore.getKeys(BOOKMARK_KEY)
             thread {
                 keys.pmap {
-                    DataStore.getKey<AnimePageData>(it)
+                    DataStore.getKey<BookmarkedTitle>(it)
                 }
             }
 
             return keys.map {
-                DataStore.getKey<AnimePageData>(it)
+                DataStore.getKey<BookmarkedTitle>(it)
             }
         }
 

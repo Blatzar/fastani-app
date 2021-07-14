@@ -58,25 +58,25 @@
                     <ImageView
                             android:id="@+id/main_poster"
                             android:layout_width="match_parent"
-                            android:layout_height="300dp"
+                            android:layout_height="412dp"
                             android:scaleType="centerCrop"
                             android:focusable="true"
                             android:contentDescription="@string/home_background_content_description"
                             android:nextFocusUp="@+id/nav_view"
                             android:nextFocusRight="@+id/main_info_button"
-                            android:nextFocusLeft="@+id/main_watch_button"
-                    >
-                        <requestFocus/>
+                            android:nextFocusLeft="@+id/main_watch_button">
+
+                        <requestFocus />
                     </ImageView>
+
+                    <View
+                            android:layout_width="match_parent"
+                            android:layout_height="412dp"
+                            android:background="@drawable/gradient" />
                     <!--
                     305 dp here (+ a new view) is needed to hide a
                     parallax scrolling bug making the gradient not cover the image
                      -->
-                    <View
-                            android:layout_width="match_parent"
-                            android:layout_height="305dp"
-                            android:background="@drawable/gradient"
-                    />
                 </FrameLayout>
 
 
@@ -219,6 +219,7 @@
                                     app:layout_constraintStart_toEndOf="@+id/main_watch_button">
                             </com.google.android.material.button.MaterialButton>
                         </androidx.constraintlayout.widget.ConstraintLayout>
+
                     </LinearLayout>
 
 

@@ -24,15 +24,15 @@
             app:cardCornerRadius="@dimen/card_corner_radius"
             app:cardBackgroundColor="?attr/backgroundColorDark"
     >
+
         <ImageView
                 android:duplicateParentState="true"
                 android:foreground="?android:attr/selectableItemBackgroundBorderless"
-                android:layout_width="127dp"
-                android:layout_height="200dp"
+                android:layout_width="114dp"
+                android:layout_height="180dp"
                 android:scaleType="centerCrop"
                 android:id="@+id/imageView"
-                android:contentDescription="@string/series_thumbnail">
-        </ImageView>
+                android:contentDescription="@string/series_thumbnail"></ImageView>
         <TextView
                 android:layout_width="127dp"
                 android:layout_height="wrap_content"
